@@ -1,0 +1,101 @@
+<div class="container mt-3">
+  <div class="row">
+    <div class="col-md-6">
+      <h2>Form Edit Data Siswa</h2>
+
+      <% if (typeof errors != 'undefined') { %>
+        <div class="alert alert-danger" role="alert">
+          <ul>
+            <% errors.forEach(error => { %>
+              <li><%= error.msg %></li>
+            <% }) %>
+          </ul>
+        </div>
+      <% } %>
+
+      <!-- Form utama -->
+      <form method="post" action="/siswa?_method=PUT">
+        <input type="hidden" name="_id" value="<%= siswa._id %>" />
+        <input type="hidden" name="oldNama" value="<%= siswa.oldNama || siswa.nama %>" />
+
+        <!-- Input Nama -->
+        <div class="mb-3">
+          <label for="nama" class="form-label">Nama</label>
+          <input type="text" class="form-control" id="nama" name="nama" required value="<%= siswa.nama %>" />
+        </div>
+
+        <!-- Input Jenis Kelamin -->
+        <div class="mb-3">
+          <label for="jk" class="form-label">Jenis Kelamin</label>
+          <select class="form-select" id="jk" name="jk" aria-label="Jenis Kelamin">
+            <option value="L" <%= siswa.jk === 'L' ? 'selected' : '' %>>Laki-Laki</option>
+            <option value="P" <%= siswa.jk === 'P' ? 'selected' : '' %>>Perempuan</option>
+          </select>
+        </div>
+
+        <!-- Input NISN -->
+        <div class="mb-3">
+          <label for="nisn" class="form-label">NISN</label>
+          <input type="text" class="form-control" id="nisn" name="nisn" required value="<%= siswa.nisn %>" />
+        </div>
+
+        <!-- Input NIK -->
+        <div class="mb-3">
+          <label for="nik" class="form-label">NIK</label>
+          <input type="text" class="form-control" id="nik" name="nik" required value="<%= siswa.nik %>" />
+        </div>
+
+        <!-- Input No. KK -->
+        <div class="mb-3">
+          <label for="nokk" class="form-label">No. KK</label>
+          <input type="text" class="form-control" id="nokk" name="nokk" required value="<%= siswa.nokk %>" />
+        </div>
+
+        <!-- Input Tingkat Kelas -->
+        <div class="mb-3">
+          <label for="tingkat" class="form-label">Tingkat Kelas</label>
+          <select class="form-select" id="tingkat" name="tingkat" aria-label="Tingkat Kelas">
+            <option value="X" <%= siswa.tingkat === 'X' ? 'selected' : '' %>>X</option>
+            <option value="XI" <%= siswa.tingkat === 'XI' ? 'selected' : '' %>>XI</option>
+            <option value="XII" <%= siswa.tingkat === 'XII' ? 'selected' : '' %>>XII</option>
+          </select>
+        </div>
+
+        <!-- Input Rombel -->
+        <div class="mb-3">
+          <label for="rombel" class="form-label">Rombel</label>
+          <select class="form-select" id="rombel" name="rombel" aria-label="Rombel">
+            <option value="PPLG 1" <%= siswa.rombel === 'PPLG 1' ? 'selected' : '' %>>PPLG 1</option>
+            <option value="PPLG 2" <%= siswa.rombel === 'PPLG 2' ? 'selected' : '' %>>PPLG 2</option>
+            <option value="RPL 1" <%= siswa.rombel === 'RPL 1' ? 'selected' : '' %>>RPL 1</option>
+            <option value="RPL 2" <%= siswa.rombel === 'RPL 2' ? 'selected' : '' %>>RPL 2</option>
+          </select>
+        </div>
+
+        <!-- Input Tanggal Masuk -->
+        <div class="mb-3">
+          <label for="tanggalMasuk" class="form-label">Tanggal Masuk</label>
+          <input type="date" class="form-control" id="tanggalMasuk" name="tanggalMasuk" value="<%= siswa.tanggalMasuk ? new Date(siswa.tanggalMasuk).toISOString().split('T')[0] : '' %>" />
+        </div>        
+
+        <!-- Input Terdaftar -->
+        <div class="mb-3">
+          <label for="terdaftar" class="form-label">Terdaftar</label>
+          <select class="form-select" id="terdaftar" name="terdaftar" aria-label="Terdaftar">
+            <option value="Siswa baru" <%= siswa.terdaftar === 'Siswa baru' ? 'selected' : '' %>>Siswa baru</option>
+            <option value="Pindahan" <%= siswa.terdaftar === 'Pindahan' ? 'selected' : '' %>>Pindahan</option>
+          </select>
+        </div>
+
+        <!-- Input Tempat Lahir -->
+        <div class="mb-3">
+          <label for="tempatLahir" class="form-label">Tempat Lahir</label>
+          <input type="text" class="form-control" id="tempatLahir" name="tempatLahir" required value="<%= siswa.tempatLahir %>" />
+        </div>
+
+        <!-- Tombol Submit -->
+        <button type="submit" class="btn btn-primary">Edit Data Siswa</button>
+      </form>
+    </div>
+  </div>
+</div>
